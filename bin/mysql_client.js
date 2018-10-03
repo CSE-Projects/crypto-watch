@@ -19,7 +19,6 @@ exports.connectDB = function (callback, fallback) {
             connection.query('USE CryptoWatch', function (err) {
                 if (err) return fallback(error);
                 // User table
-                console.log("here");
                 connection.query('CREATE TABLE IF NOT EXISTS User('
                     + 'username VARCHAR(10) PRIMARY KEY,'
                     + 'password BINARY(60) NOT NULL,'
@@ -40,7 +39,6 @@ exports.connectDB = function (callback, fallback) {
                     +  ')', function (err) {
                     if (err) return fallback(err);
                 });
-                console.log("here too");
             });
 
         });
@@ -49,12 +47,12 @@ exports.connectDB = function (callback, fallback) {
 };
 
 // query the database
-exports.query = function(query_string) {
-    connection.query(query_string, function (error, results, fields) {
-        if (error) throw error;
+exports.query = function(query_string, params, callback, fallback) {
+    connection.query(query_string, params, function (error, results) {
+        if (error) return fallback(error);
         // connected!
         console.log(results);
-        return results;
+        return callback(results);
     });
 };
 

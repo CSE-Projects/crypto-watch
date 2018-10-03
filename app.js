@@ -1,12 +1,13 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysqlClient = require("./bin/mysql_client");
 
 // router
-// var userRouter = require('./routes/userHandler');
+var userRouter = require('./routes/userHandler');
 
 var app = express();
 
@@ -15,6 +16,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -27,6 +30,18 @@ mysqlClient.connectDB(function (tid) {
     }, function (err) {
         console.log("Error: ", err);
 });
+
+
+/*
+    Routes
+ */
+// db state
+app.use(function(req, res, next) {
+    req.connection = mysqlClient;
+    next();
+});
+// user router
+app.use('/user', userRouter);
 
 
 // catch 404 and forward to error handler
