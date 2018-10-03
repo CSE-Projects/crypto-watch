@@ -8,6 +8,7 @@ var mysqlClient = require("./bin/mysql_client");
 
 // router
 var userRouter = require('./routes/userHandler');
+var walletRouter = require('./routes/walletHandler');
 
 var app = express();
 
@@ -42,6 +43,7 @@ app.use(function(req, res, next) {
 });
 // user router
 app.use('/user', userRouter);
+app.use('/wallet', walletRouter);
 
 
 // catch 404 and forward to error handler

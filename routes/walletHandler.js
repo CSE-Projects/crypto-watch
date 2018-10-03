@@ -4,37 +4,36 @@ var bcrypt = require('../bin/password');
 
 
 /**
- * route /user/
+ * route /wallet/
  * type: GET
- * req: user attributes in body
- * res: user created
+ * req: wallet attributes in body
+ * res: wallet created
  */
 router.post('/', function(req, res) {
     // get database connection
     var db = req.connection;
     // get username
-    var username = req.body.username;
+    var username = req.body.owner_username;
     // console.log(req.body);
     // check for username in database
     db.query('SELECT username FROM User WHERE username = ?', username, function (rows) {
-        if (rows.length !== 0) {
-            // username or user exists
-            res.send('DB Error: Username exists!');
+        if (rows.length === 0) {
+            // user doesn't exist
+            res.send("DB Error: Username doesn't exist!");
         }
         else {
-            // password first encrypted using bcrypt library
-            bcrypt.cryptPassword(req.body.password, function (hash) {
+            // username hash for wallet id
+            bcrypt.cryptPassword(username, function (hash) {
                 // attributes
                 var values = {
-                    username: username,
-                    password: hash,
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    email_id: req.body.email_id
+                    owner_username: username,
+                    wallet_id: hash,
+                    bitcoin: req.body.bitcoin,
+                    ether: req.body.ether
                 };
                 // insert user attributes into User table
-                db.query('INSERT INTO User SET ?', values, function (rows) {
-                    res.send('DB success: user added');
+                db.query('INSERT INTO Wallet SET ?', values, function (rows) {
+                    res.send('DB success: wallet added');
                 }, function (err) {
                     res.send('DB error: ' + err);
                 });
@@ -50,16 +49,15 @@ router.post('/', function(req, res) {
 
 
 /**
- * route: /user/:username
+ * route: /wallet/:username
  * type: GET
- * response: username details of the user with requested username
-  */
+ * response: wallet details for a particular user
+ */
 router.get('/:username', function (req, res) {
     // get db connection
     var db = req.connection;
     var username = req.params.username;
-    // get attributes for the username
-    db.query('SELECT username, first_name, last_name, email_id, virtual_currency from User where username = ?', username, function (rows) {
+    db.query('SELECT owner_username, bitcoin, ether from Wallet where owner_username = ?', username, function (rows) {
         res.send(rows);
     }, function (err) {
         res.send('DB Error: '+ + err);

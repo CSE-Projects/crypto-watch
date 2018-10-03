@@ -32,7 +32,7 @@ exports.connectDB = function (callback, fallback) {
                 // Wallet table
                 connection.query('CREATE TABLE IF NOT EXISTS Wallet ('
                     + 'owner_username VARCHAR(10),'
-                    + 'wallet_id BIGINT(20) PRIMARY KEY,'
+                    + 'wallet_id BINARY(60) PRIMARY KEY,'
                     + 'bitcoin BIGINT(10) DEFAULT 0,'
                     + 'ether BIGINT(10) DEFAULT 0,'
                     + 'CONSTRAINT fk_wallet FOREIGN KEY (owner_username) REFERENCES User(username) ON DELETE CASCADE'
@@ -51,7 +51,7 @@ exports.query = function(query_string, params, callback, fallback) {
     connection.query(query_string, params, function (error, results) {
         if (error) return fallback(error);
         // connected!
-        console.log(results);
+        // console.log(results);
         return callback(results);
     });
 };
