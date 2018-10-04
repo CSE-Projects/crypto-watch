@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('../client/dist'));
 
 // MySQL connection
 mysqlClient.connectDB(function (tid) {
@@ -42,8 +42,8 @@ app.use(function(req, res, next) {
     next();
 });
 // user router
-app.use('/user', userRouter);
-app.use('/wallet', walletRouter);
+app.use('/api/user', userRouter);
+app.use('/api/wallet', walletRouter);
 
 
 // catch 404 and forward to error handler
