@@ -15,10 +15,10 @@ exports.cryptPassword = function(password, callback, fallback) {
 };
 
 // compare passwords
-exports.comparePassword = function(plainPass, hashword, callback) {
+exports.comparePassword = function(plainPass, hashword, callback, fallback) {
     bcrypt.compare(plainPass, hashword, function(err, isPasswordMatch) {
         return err == null ?
-            callback(null, isPasswordMatch) :
-            callback(err);
+            callback(isPasswordMatch) :
+            fallback(err);
     });
 };

@@ -1,2 +1,5 @@
 # node
 /node_modules
+
+# json file to hold secret for signing
+# secret.json
