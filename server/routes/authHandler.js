@@ -44,7 +44,7 @@ router.post('/', function(req, res) {
                             bitcoin: req.body.bitcoin,
                             ether: req.body.ether
                         };
-                        // insert user attributes into User table
+                        // insert wallet into  Wallet table
                         db.query('INSERT INTO Wallet SET ?', values, function (rows) {
                             res.send('DB success: user and wallet added');
                         }, function (err) {
