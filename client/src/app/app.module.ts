@@ -3,13 +3,16 @@ import { NgModule } from '@angular/core';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 
+// app components
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GroupComponent } from './group/group.component';
-import {DashboardComponent} from "./dashboard/dashboard.component";
+// app modules
+import {DashboardModule} from "./dashboard/dashboard.module";
 
 import { AuthGuard } from "./services/auth.guard";
 import { AuthService } from "./services/auth.service";
+
 
 
 export function tokenGetter() {
@@ -20,13 +23,13 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    GroupComponent,
-    DashboardComponent
+    GroupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    DashboardModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

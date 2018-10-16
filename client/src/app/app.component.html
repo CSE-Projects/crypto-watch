@@ -1,1 +1,17 @@
+<!--<div id="nav" *ngIf="auth.loggedIn()">-->
+<div id="nav">
+    <div class="nav-pills">
+      <img src="../assets/btcq.png" width="30px" height="30px"><b>Crypto Watch</b>
+    </div>
+    <div class="nav-pills">
+      <div style="padding-right: 10px">
+        {{auth.username}}
+      </div>
+      <div style="display: flex; align-items: center">
+        <img src="../assets/bitcoin.png" width="40px" height="40px">
+      </div>
+    </div>
+</div>
+
+
 <router-outlet></router-outlet>

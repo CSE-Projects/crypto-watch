@@ -1,3 +1,29 @@
-<p>
-  groups works!
-</p>
+<div id="groups-container">
+
+  <div id="new-grp">
+    <i class="material-icons md-dark md-48">
+      add_circle
+    </i>
+  </div>
+
+  <div id="groups-header">
+    <div class="header-field">
+      Group
+    </div>
+    <div class="header-field">
+      Admin
+    </div>
+  </div>
+
+  <div class="group-row" *ngFor="let g of groups">
+    <div class="row-field">
+      {{g.group_name}}
+    </div>
+    <div class="row-field">
+      {{g.admin_username}}
+    </div>
+  </div>
+
+</div>
+
+

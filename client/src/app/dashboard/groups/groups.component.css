@@ -1,0 +1,37 @@
+#groups-container {
+  padding: 10px 300px 0 300px;
+  margin: 10px 0 10px 0;
+}
+
+#new-grp {
+  margin: 20px;
+}
+
+#groups-header {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  background-color: #E0E0E0;
+}
+
+.header-field {
+  margin: 0 40px 0 40px;
+  color: #757575;
+  font-weight: bold;
+}
+
+.group-row {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  background-color: white;
+}
+
+.row-field {
+  margin: 0 40px 0 40px;
+}
+
+/* icons */
+.material-icons.md-48 { font-size: 52px; }
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+

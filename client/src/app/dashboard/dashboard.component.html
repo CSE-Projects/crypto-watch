@@ -1,0 +1,15 @@
+<!-- Sub navbar -->
+<div class="sub-nav">
+  <div class="sub-nav-pills selected" [ngClass] = "{'selected': groupNav}"  (click)="navToggle()">
+    <b>Groups</b>
+  </div>
+  <div class="sub-nav-pills selected" [ngClass] = "{'selected': !groupNav}" (click)="navToggle()">
+    <b>Analytics</b>
+  </div>
+</div>
+
+<!-- Components -->
+<div id="container">
+  <app-groups *ngIf="groupNav"></app-groups>
+  <app-analytics *ngIf="!groupNav"></app-analytics>
+</div>
