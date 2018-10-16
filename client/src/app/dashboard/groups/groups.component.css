@@ -1,16 +1,25 @@
 #groups-container {
   padding: 10px 300px 0 300px;
-  margin: 10px 0 10px 0;
+  margin: 5px 0 10px 0;
 }
 
 #new-grp {
-  margin: 20px;
+  display: flex;
+  align-items: center;
+  margin: 15px;
+}
+#new-grp-icon:hover {
+  color: #03A9F4;
+  cursor: pointer;
 }
 
+
+/* Header */
 #groups-header {
   display: flex;
   flex-direction: row;
   padding: 20px;
+  margin-bottom: 15px;
   background-color: #E0E0E0;
 }
 
@@ -20,15 +29,22 @@
   font-weight: bold;
 }
 
+/* Row */
 .group-row {
   display: flex;
   flex-direction: row;
   padding: 20px;
+  margin-bottom: 5px;
   background-color: white;
+  box-shadow: 0 1px 3px rgba(10, 10, 10, 0.2);
+  cursor: pointer;
 }
 
 .row-field {
+  font-size: 20px;
   margin: 0 40px 0 40px;
+  padding: 10px 15px 10px 15px;
+  border-left: 2px solid #f2f2f2;
 }
 
 /* icons */
