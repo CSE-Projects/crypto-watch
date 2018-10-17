@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
     db.query('SELECT owner_username, bitcoin, ether from Wallet where owner_username = ?', username, function (rows) {
         res.send(rows);
     }, function (err) {
-        res.send('DB Error: '+ + err);
+        res.send('DB Error: ' + err);
     });
 });
 

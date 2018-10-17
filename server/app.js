@@ -13,7 +13,7 @@ var secret_file = require('./secret');
 var authRouter = require('./routes/authHandler');
 var userRouter = require('./routes/userHandler');
 var walletRouter = require('./routes/walletHandler');
-
+var groupRouter = require('./routes/groupHandler');
 
 var app = express();
 
@@ -53,6 +53,7 @@ app.use(function(req, res, next) {
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/api/wallet', walletRouter);
+app.use('/api/group', groupRouter);
 
 
 // catch 404 and forward to error handler
