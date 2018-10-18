@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
-  username = "your_username";
+  username = "omkar1";
   baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) { }

@@ -14,6 +14,6 @@ export class GroupsService {
 
   getGroups() {
     // token is implicitly sent by the jwt library
-    return this.http.get<Group>(this.baseUrl + '/group');
+    return this.http.get<Group[]>(this.baseUrl + '/group');
   }
 }

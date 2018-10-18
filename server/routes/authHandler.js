@@ -93,7 +93,7 @@ router.post('/login', function(req, res) {
                if (isMatch) {
                    // if password match
                    // create a jwt token as a response
-                   var token = jwt.sign({userID: username}, secret_file.secret, {expiresIn: '2h'});
+                   var token = jwt.sign({userID: username}, secret_file.secret, {expiresIn: '24h'});
                    res.send(token)
                }
                else {

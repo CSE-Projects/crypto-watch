@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="group-row" *ngFor="let g of groups; let i = index">
+  <div class="group-row" *ngFor="let g of groups| async; let i = index">
     <div class="row-field" style="border: none; padding: 10px 0 10px 0; margin: 0 20px 0 20px">
       {{i+1 + "."}}
     </div>
