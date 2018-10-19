@@ -1,0 +1,38 @@
+/* ================ Sub - Navbar ================ */
+.sub-nav {
+  height: 20%;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  padding: 0 100px 0 100px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(10, 10, 10, 0.2);
+  cursor: pointer;
+}
+
+.sub-nav-pills {
+  background-color: white;
+  color: #9E9E9E;
+  font-size: 18px;
+  padding: 10px 30px 10px 30px;
+  margin: 10px;
+  border: 2px solid white;
+  border-radius: 8px;
+}
+
+.sub-nav-pills:hover {
+  background-color: #F5F5F5;
+}
+
+.sub-nav-pills.selected {
+  border-color: #03A9F4;
+  color: #03A9F4;
+}
+
+/* ====================================------------ */
+/* =================== Container =========------------ */
+
+#container {
+}
+
+

@@ -7,13 +7,14 @@ var logger = require('morgan');
 var mysqlClient = require("./bin/mysql_client");
 const expressJwt = require('express-jwt');
 var secret_file = require('./secret');
+var cors = require('cors');
 
 
 // router
 var authRouter = require('./routes/authHandler');
 var userRouter = require('./routes/userHandler');
 var walletRouter = require('./routes/walletHandler');
-
+var groupRouter = require('./routes/groupHandler');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use(cookieParser());
 app.use(express.static('../client/dist'));
 // jwt middleware for checking existence od jwt token for paths other than the mentioned ones
 app.use(expressJwt({secret: secret_file.secret}).unless({path: ['/api/auth/', '/api/auth/login']}));
+app.use(cors());
 
 
 // MySQL connection
@@ -53,6 +55,7 @@ app.use(function(req, res, next) {
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/api/wallet', walletRouter);
+app.use('/api/group', groupRouter);
 
 
 // catch 404 and forward to error handler

@@ -3,18 +3,22 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as jwtDecode from 'jwt-decode';
-
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
+  username = "omkar1";
+  baseUrl = environment.baseUrl;
+
   constructor(private http: HttpClient) { }
 
   // login using username password
   login(username: string, password: string): Observable<boolean> {
-    return this.http.post<{token: string}>('/api/auth/login', {username: username, password: password})
+    return this.http.post<{token: string}>(this.baseUrl + '/auth/login', {username: username, password: password})
       .pipe(
         map(result => {
           localStorage.setItem('access_token', result.token);
+          this.username = username;
           return true;
         })
       );
@@ -23,6 +27,7 @@ export class AuthService {
   // logout
   logout() {
     localStorage.removeItem('access_token');
+    this.username = null;
   }
 
   // get expiration date for a token string

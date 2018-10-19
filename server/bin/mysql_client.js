@@ -39,6 +39,23 @@ exports.connectDB = function (callback, fallback) {
                     +  ')', function (err) {
                     if (err) return fallback(err);
                 });
+                // Group table
+                connection.query('CREATE TABLE IF NOT EXISTS User_Group ('
+                    + 'group_name VARCHAR(10) PRIMARY KEY,'
+                    + 'admin_username VARCHAR(10),'
+                    + 'CONSTRAINT fk_group FOREIGN KEY (admin_username) REFERENCES User(username)'
+                    +  ')', function (err) {
+                    if (err) return fallback(err);
+                });
+                // Part_of table
+                connection.query('CREATE TABLE IF NOT EXISTS Part_of ('
+                    + 'group_name VARCHAR(10),'
+                    + 'username VARCHAR(10),'
+                    + 'CONSTRAINT fk_group_partof FOREIGN KEY (group_name) REFERENCES User_Group(group_name) ON DELETE CASCADE,'
+                    + 'CONSTRAINT fk_username_partof FOREIGN KEY (username) REFERENCES User(username) ON DELETE CASCADE'
+                    +  ')', function (err) {
+                    if (err) return fallback(err);
+                });
             });
 
         });
