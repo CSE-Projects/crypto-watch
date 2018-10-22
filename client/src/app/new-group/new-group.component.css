@@ -5,6 +5,7 @@
 
 .new-group-input[type=text]{
   width: 100%;
+  font-size: 18px;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 2px;
@@ -31,7 +32,7 @@
 }
 
 .new-group-label {
-  font-size: 20px;
+  font-size: 26px;
 }
 
 
