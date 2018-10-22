@@ -1,17 +1,9 @@
 <div id="groups-container">
-
-  <!-- New group button -->
-  <div id="new-grp">
-    <span class="row-field" style="padding: 0 20px 0 0; margin: 0">
-      New group
-    </span>
-    <i id="new-grp-icon" class="material-icons md-dark md-48">
+  <!-- Header -->
+  <div id="groups-header">
+    <i id="new-grp-icon" (click)="routeNewGroup()" class="material-icons md-dark md-new-grp">
       add_circle
     </i>
-  </div>
-
-  <!-- Display list of groups -->
-  <div id="groups-header">
     <div class="header-field">
       #
     </div>
@@ -22,19 +14,20 @@
       Admin
     </div>
   </div>
-
-  <div class="group-row" *ngFor="let g of groups| async; let i = index">
-    <div class="row-field" style="border: none; padding: 10px 0 10px 0; margin: 0 20px 0 20px">
-      {{i+1 + "."}}
-    </div>
-    <div class="row-field">
-      {{g.group_name}}
-    </div>
-    <div class="row-field">
-      {{g.admin_username}}
+  <!-- list of groups -->
+  <div  *ngFor="let g of groups| async; let i = index">
+    <div class="group-row" (click)="routeGroup(g.group_name)">
+      <div class="row-field" >
+        {{i+1 + "."}}
+      </div>
+      <div class="row-field">
+        {{g.group_name}}
+      </div>
+      <div class="row-field">
+        {{g.admin_username}}
+      </div>
     </div>
   </div>
-
 </div>
 
 

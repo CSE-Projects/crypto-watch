@@ -8,11 +8,6 @@
   align-items: center;
   margin: 15px;
 }
-#new-grp-icon:hover {
-  color: #03A9F4;
-  cursor: pointer;
-}
-
 
 /* Header */
 #groups-header {
@@ -21,6 +16,7 @@
   padding: 20px;
   margin-bottom: 15px;
   background-color: #E0E0E0;
+  align-items: center;
 }
 
 .header-field {
@@ -48,6 +44,10 @@
 }
 
 /* icons */
-.material-icons.md-48 { font-size: 52px; }
+.material-icons.md-new-grp { font-size: 32px; margin: 0}
+.material-icons.md-new-grp:hover {
+  color: #03A9F4;
+  cursor: pointer;
+}
 .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
 

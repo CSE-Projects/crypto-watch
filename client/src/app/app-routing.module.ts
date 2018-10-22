@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { GroupComponent } from "./group/group.component";
 import { AuthGuard } from "./services/auth.guard";
+import {NewGroupComponent} from "./new-group/new-group.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: 'new-group',
+    component: NewGroupComponent,
     // canActivate: [AuthGuard]
   },
   {
