@@ -1,9 +1,9 @@
 <!-- Sub navbar -->
 <div class="sub-nav">
-  <div class="sub-nav-pills selected" [ngClass] = "{'selected': groupNav}"  (click)="navToggle()">
+  <div class="sub-nav-pills selected" [ngClass] = "{'selected': groupNav}"  (click)="navToggle(0)">
     <b>Groups</b>
   </div>
-  <div class="sub-nav-pills selected" [ngClass] = "{'selected': !groupNav}" (click)="navToggle()">
+  <div class="sub-nav-pills selected" [ngClass] = "{'selected': !groupNav}" (click)="navToggle(1)">
     <b>Analytics</b>
   </div>
 </div>

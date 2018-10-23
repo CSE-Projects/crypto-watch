@@ -1,0 +1,24 @@
+<div id="new-group-container">
+
+  <div id="new-group-form-container">
+    <label class="new-group-label" for="group_name">Group Name</label>
+    <input class="new-group-input" type="text" #group_name id="group_name" name="group_name" placeholder="group name">
+
+    <label class="new-group-label" for="username">Member Username</label>
+    <div style="display: flex; flex-direction: row; align-items: center">
+      <input class="new-group-input" type="text" #usernameInput id="username" name="username" placeholder="username" style="width: 30%">
+      <i id="new-grp-icon" (click)="addUsername(usernameInput)" class="material-icons md-dark md-add-user">
+        add_circle
+      </i>
+    </div>
+
+    <div id="username-pills">
+      <span class="username-pills" *ngFor="let i of username_list">{{i}}</span>
+    </div>
+
+    <button (click)="createNewGroup(group_name.value)" id="new-group-button">
+      Create
+    </button>
+  </div>
+
+</div>

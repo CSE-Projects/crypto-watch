@@ -4,75 +4,60 @@ var router = express.Router();
 /**
  * route: /group
  * type: POST
- * req: group_name in body and admin_username extracted from token (the user who creates the group is the admin)
+ * req: group_name and list of usernames, in body and admin_username extracted from token (the user who creates the group is the admin)
  * response: successfully created a group
  */
 router.post('/', function (req, res) {
     // get db connection
     var db = req.connection;
-    // values to insert into user_group table
-    var values = {
-        group_name: req.body.group_name,
-        admin_username: req.user.userID
-    };
+
     // check if group_name exists
     db.query('SELECT * from User_group where group_name = ?', req.body.group_name, function (rows) {
         if (rows.length !== 0) {
             res.send('Error: Group Name exists');
         }
-        // create a group entry in the database
-        db.query('Insert into User_group Set ?', values, function (rows) {
-            values = {
-                group_name: req.body.group_name,
-                username: req.user.userID
-            };
-            // insert user into Part_of table
-            db.query('Insert into Part_of Set ?', values, function (rows) {
-                res.send('Group created');
+        else {
+            // list of usernames
+            var username_list = req.body.username_list;
+
+            // check if all users in the list exist
+            db.query('select count(*) as count from User where username in (?)', [username_list], function (rows) {
+                // console.log(rows[0].count);
+                // some users don't exist
+                if (rows[0].count !== username_list.length) {
+                    res.send("Error: Some Users don't exist");
+                    return;
+                }
+
+                // create a group entry in the table
+                // with value of group_name and admin_name
+                // values to insert into user_group table
+                var values = {
+                    group_name: req.body.group_name,
+                    admin_username: req.user.userID
+                };
+                db.query('Insert into User_group Set ?', values, function (rows) {
+                    // form tuples to be inserted into the table part_of
+                    var values = [];
+                    values.push([req.body.group_name, req.user.userID]);
+                    for (var i = 0; i < username_list.length; ++i) {
+                        values.push([req.body.group_name, username_list[i]]);
+                    }
+                    console.log(values);
+
+                    // add user to group using Part_of table
+                    db.query('Insert into Part_of Values ?', [values], function (rows) {
+                        res.send('Group created and Users added to the group');
+                    }, function (err) {
+                        res.send('DB Error: ' + err);
+                    });
+                }, function (err) {
+                    res.send('DB Error: ' + err);
+                });
             }, function (err) {
-                res.send('DB Error: ' + err);
+                console.log(err);
             });
-        }, function (err) {
-            res.send('DB Error: ' + err);
-        });
-    }, function (err) {
-        res.send('DB Error: ' + err);
-    });
-
-});
-
-
-/**
- * route: /group/users
- * type: POST
- * req: group_name and username's of members in body, admin_username from token (only admin will be able to add users)
- * response: adds users to a group
- */
-router.post('/users', function (req, res) {
-    // get db connection
-    var db = req.connection;
-    var admin_username = req.user.userID;
-    var group_name = req.body.group_name;
-
-    // check if the user is admin for this group
-    db.query('Select * from User_group where admin_username = ? and group_name = ?', [admin_username, group_name], function (rows) {
-        if (rows.length === 0) {
-            res.send("Error: User is not admin");
         }
-
-        var username_list = req.body.username_list;
-        console.log(username_list);
-        var values = [];
-        for (var i = 0; i < username_list.length; ++i) {
-            values.push([group_name, username_list[i]]);
-        }
-        console.log(values);
-        // add user to group using Part_of table
-        db.query('Insert into Part_of Values ?', [values], function (rows) {
-            res.send('Users added to the group');
-        }, function (err) {
-            res.send('DB Error: ' + err);
-        });
     }, function (err) {
         res.send('DB Error: ' + err);
     });

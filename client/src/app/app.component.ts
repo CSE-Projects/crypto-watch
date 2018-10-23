@@ -14,4 +14,8 @@ export class AppComponent {
     this.auth.logout();
     this.router.navigate(['auth']);
   }
+
+  routeDashboard() {
+    this.router.navigate(['']);
+  }
 }

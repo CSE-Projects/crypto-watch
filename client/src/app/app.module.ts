@@ -12,6 +12,7 @@ import {DashboardModule} from "./dashboard/dashboard.module";
 
 import { AuthGuard } from "./services/auth.guard";
 import { AuthService } from "./services/auth.service";
+import { NewGroupComponent } from './new-group/new-group.component';
 
 
 
@@ -23,7 +24,8 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    GroupComponent
+    GroupComponent,
+    NewGroupComponent
   ],
   imports: [
     BrowserModule,

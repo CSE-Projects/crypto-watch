@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GroupsService} from "./groups.service";
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-groups',
@@ -9,7 +11,7 @@ import {GroupsService} from "./groups.service";
 export class GroupsComponent implements OnInit {
   groups;
 
-  constructor(private groupsService: GroupsService) { }
+  constructor(private groupsService: GroupsService, private router: Router) { }
 
   ngOnInit() {
     // fill the groups array
@@ -18,4 +20,11 @@ export class GroupsComponent implements OnInit {
     // this.groups = [{group_name: 'test', admin_username: 'test'}, {group_name: 'test1', admin_username: 'test1'}, {group_name: 'test2', admin_username: 'test2'}]
   }
 
+  routeNewGroup() {
+    this.router.navigate(['/new-group']);
+  }
+
+  routeGroup(group_name) {
+    this.router.navigate(['/group/'+group_name]);
+  }
 }

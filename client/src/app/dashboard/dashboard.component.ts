@@ -16,8 +16,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-  navToggle() {
-    this.groupNav = !this.groupNav;
+  navToggle(i) {
+    this.groupNav = i === 0;
+
   }
 
 }

@@ -1,0 +1,66 @@
+#new-group-container {
+  padding: 100px 300px 0 300px;
+  margin: 5px 0 10px 0;
+}
+
+.new-group-input[type=text]{
+  width: 100%;
+  font-size: 18px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+#username-pills-area {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+.username-pills {
+  padding: 10px;
+  margin: 4px;
+  background-color: #B3E5FC;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
+.new-group-label {
+  font-size: 26px;
+}
+
+
+.material-icons.md-add-user {
+  font-size: 42px;
+  color: #03A9F4;
+  border: none;
+  border-radius: 3px;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 6px 0 16px 10px;
+  cursor: pointer;
+}
+
+#new-group-button {
+  font-size: 18px;
+  color: white;
+  background-color: #03A9F4;
+  border: none;
+  border-radius: 3px;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 40px 0 16px 0px;
+  cursor: pointer;
+}
+
+
