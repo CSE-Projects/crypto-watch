@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {switchMap} from "rxjs/internal/operators";
 
 @Component({
   selector: 'app-group',
@@ -7,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupComponent implements OnInit {
 
-  constructor() {}
+  isAdmin = true;
+  group_name;
 
-  ngOnInit() {}
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    // get group name
+    this.group_name = this.route.snapshot.paramMap.get('group_name');
+    console.log(this.group_name)
+  }
 
 }

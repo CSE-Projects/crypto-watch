@@ -1,3 +1,28 @@
-<p>
-  group works!
-</p>
+<div id="group-container">
+  <!-- Display transaction in a group -->
+  <div id="group-transactions">
+    <div class="group-transaction-item">
+
+    </div>
+  </div>
+
+  <!-- Add and resolve transaction-->
+  <div id="add-transaction">
+    <span>
+      <input class="group-input" type="text" #from id="from" name="from" placeholder="from">
+      <!--<b>==></b>-->
+      <input class="group-input" type="text" #to id="to" name="to" placeholder="to">
+      <!--<b>==</b>-->
+      <input class="group-input" type="text" #amount id="amount" name="amount" placeholder="amount">
+
+      <button class="group-button">
+        Add
+      </button>
+    </span>
+    <span>
+      <button *ngIf="isAdmin" class="group-button" style="background-color: #4CAF50; font-size: 18px; margin-top: 6px">
+        Resolve
+      </button>
+    </span>
+  </div>
+</div>
