@@ -1,8 +1,18 @@
 <div id="group-container">
   <!-- Display transaction in a group -->
   <div id="group-transactions">
-    <div class="group-transaction-item">
-
+    <div *ngFor="let txn of groupTransactions" class="group-transaction-item">
+      <span class="group-txn-item">
+        {{txn.from}}
+      </span>
+      =>
+      <span class="group-txn-item">
+        {{txn.to}}
+      </span>
+      =
+      <span class="group-txn-item">
+        {{txn.value}}
+      </span>
     </div>
   </div>
 

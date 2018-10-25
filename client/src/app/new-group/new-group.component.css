@@ -3,6 +3,13 @@
   margin: 5px 0 10px 0;
 }
 
+#new-group-form-container {
+  background-color: white;
+  padding: 30px;
+  box-shadow: 0 1px 3px rgba(10, 10, 10, 0.2);
+  border-radius: 5px;
+}
+
 .new-group-input[type=text]{
   width: 100%;
   font-size: 18px;
@@ -13,6 +20,10 @@
   margin-top: 6px;
   margin-bottom: 16px;
   resize: vertical;
+  background-color: rgb(200, 248, 240);
+}
+.new-group-input[type=text]:focus {
+  background-color: white;
 }
 
 #username-pills-area {
@@ -32,7 +43,8 @@
 }
 
 .new-group-label {
-  font-size: 26px;
+  color: #757575;
+  font-size: 20px;
 }
 
 
