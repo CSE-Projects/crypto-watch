@@ -87,4 +87,80 @@ router.get('/', function (req, res) {
 });
 
 
+/**
+ * route: /group/transactions/:group_name
+ * type: GET
+ * req: username from token, group_name in param
+ * res: all transaction done in a group
+ */
+router.get('/transactions/:group_name', function(req, res) {
+    // get db connection
+    var db = req.connection;
+    var username = req.user.userID;
+    var group_name = req.params.group_name;
+    // check if user is a part of a group
+    db.query('Select * from Part_of where username = ? and group_name = ?', [username, group_name], function (rows) {
+        if (rows.length === 0) {
+            res.send('Error: User not present in the Group');
+        }
+        else {
+            // get transaction details for that group name
+            db.query('Select * from Group_Transactions where group_name = ?', group_name, function (rows) {
+                res.send(rows);
+            }, function (err) {
+                res.send('DB Error: ' + err);
+            });
+        }
+    }, function (err) {
+        res.send('DB Error: ' + err);
+    });
+});
+
+
+/**
+ * route: /group/transactions
+ * type: POST
+ * req: group_name and transaction details in the body
+ */
+router.post('/transactions', function (req, res) {
+    // get db connection
+    var db = req.connection;
+    var username = req.user.userID;
+    var group_name = req.body.group_name;
+    // check if user is a part of a group
+    db.query('Select * from Part_of where username = ? and group_name = ?', [username, group_name], function (rows) {
+        if (rows.length === 0) {
+            res.send('Error: User not present in the Group');
+        }
+        else {
+            // check whether from and to fields in the transaction are part of the group
+            db.query('Select * from Part_of where group_name = ? and username in (?)', [group_name, [req.body.payment_from, req.body.payment_to]], function (rows) {
+                if(rows.length !== 2) {
+                    res.send('Error: Invalid from and to fields in the transaction');
+                    return;
+                }
+                // console.log(rows);
+                var values = {
+                    group_name: group_name,
+                    payment_to: req.body.payment_to,
+                    payment_from: req.body.payment_from,
+                    time: req.body.time,
+                    value: req.body.value
+                };
+                // get transaction details for that group name
+                db.query('Insert into Group_Transactions SET ?', values, function (rows) {
+                    res.send('Transaction added');
+                }, function (err) {
+                    res.send('DB Error: ' + err);
+                });
+            }, function (err) {
+                res.send('DB Error: ' + err);
+            });
+        }
+    }, function (err) {
+        res.send('DB Error: ' + err);
+    });
+});
+
+
 module.exports = router;

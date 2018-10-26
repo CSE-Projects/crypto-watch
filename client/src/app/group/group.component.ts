@@ -22,5 +22,4 @@ export class GroupComponent implements OnInit {
 
     this.groupTransactions = [{from: "new", to: "omkar", value: "1233"}, {from: "new", to: "omkar", value: "1243"}]
   }
-
 }
