@@ -4,6 +4,7 @@ import {switchMap} from "rxjs/internal/operators";
 import {GroupService} from "./group.service";
 import {GroupAdminDataService} from "../services/groupAdminData";
 import {AuthService} from "../services/auth.service";
+import {getProjectAsAttrValue} from "@angular/core/src/render3/node_selector_matcher";
 
 @Component({
   selector: 'app-group',
@@ -15,7 +16,6 @@ export class GroupComponent implements OnInit {
   isAdmin = true;
   group_name;
   groupTransactions;
-
 
   constructor(
     private authService: AuthService,
@@ -31,7 +31,7 @@ export class GroupComponent implements OnInit {
     this.group_name = this.route.snapshot.paramMap.get('group_name');
     console.log(this.group_name);
 
-    this.groupTransactions = this.groupService.getGroupTransactions();
+    this.groupTransactions = this.groupService.getGroupTransactions(this.group_name);
     // this.groupTransactions = [{from: "new", to: "omkar", value: "1233"}, {from: "new", to: "omkar", value: "1243"}]
   }
 
@@ -46,7 +46,14 @@ export class GroupComponent implements OnInit {
   // add a new transaction for a group
   addGroupTransaction(payment_to, payment_from, value, time) {
     if (this.checkValidity(payment_to)&&this.checkValidity(payment_from)&&this.checkValidity(value)&&this.checkValidity(time)) {
-      this.groupService.newGroupTransaction();
+      let data = {
+        group_name: this.group_name,
+        payment_to: payment_to,
+        payment_from: payment_from,
+        value: value,
+        time: time
+      };
+      this.groupService.newGroupTransaction(data);
     }
   }
 }

@@ -21,6 +21,7 @@ export class NewGroupService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  // create a new group
   createNewGroup(group_name, username_list) {
     let value = {
       group_name: group_name,

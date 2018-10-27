@@ -1,13 +1,13 @@
 <div id="group-container">
   <!-- Display transaction in a group -->
   <div id="group-transactions">
-    <div *ngFor="let txn of groupTransactions" class="group-transaction-item">
+    <div *ngFor="let txn of groupTransactions | async" class="group-transaction-item">
       <span class="group-txn-item">
-        {{txn.from}}
+        {{txn.payment_from}}
       </span>
       =>
       <span class="group-txn-item">
-        {{txn.to}}
+        {{txn.payment_to}}
       </span>
       =
       <span class="group-txn-item">
