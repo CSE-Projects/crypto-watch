@@ -12,6 +12,7 @@ export class GroupsService {
 
   constructor(private http: HttpClient) {}
 
+  // get all the groups for this user
   getGroups() {
     // token is implicitly sent by the jwt library
     return this.http.get<Group[]>(this.baseUrl + '/group');
