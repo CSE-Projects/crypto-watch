@@ -1,27 +1,41 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 import * as jwtDecode from 'jwt-decode';
 import { environment } from '../../environments/environment';
+import { constructDependencies } from '@angular/core/src/di/reflective_provider';
+import { Router } from '@angular/router';
+
+// sending json
+// receiving a text response (https://github.com/angular/angular/issues/18586)
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  responseType: 'text' as 'text'
+};
 
 @Injectable()
 export class AuthService {
-  username = "omkar12";
+  username = "";
   baseUrl = environment.baseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   // login using username password
-  login(username: string, password: string): Observable<boolean> {
-    return this.http.post<{token: string}>(this.baseUrl + '/auth/login', {username: username, password: password})
+  login(username, password) {
+    return this.http.post(this.baseUrl + '/auth/login', {username: username, password: password}, httpOptions)
       .pipe(
-        map(result => {
-          localStorage.setItem('access_token', result.token);
+        tap(result => {
+          // console.log(result);
+          if (result.includes("Error")) {
+            return;
+          }
+          result = result === undefined ? "" : result;
+          localStorage.setItem('access_token', "" + result);
           this.username = username;
-          return true;
+          this.router.navigate(['/dashboard']);
         })
-      );
+      )
+      .subscribe();
   }
 
   // logout
@@ -45,6 +59,8 @@ export class AuthService {
   loggedIn() {
     const token = localStorage.getItem('access_token');
     if(!token) return false;
+    // console.log(token)
+    if (token === "" || token === null) return false;
 
     // check token expiration
     const date = this.getTokenExpirationDate(token);

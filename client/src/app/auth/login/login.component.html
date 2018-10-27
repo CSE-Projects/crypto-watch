@@ -1,3 +1,34 @@
-<p>
-  login works!
-</p>
+<br>
+<br>
+<div class="card-login">
+  <div class="title">
+      Login
+  </div>
+  <br>
+  <div class="field">
+      <div class="input-title">
+          Username
+      </div>
+      <form>
+        <input class="input" type="text" #username id="username" name="username">
+      </form>    
+  </div>
+  <div class="field">
+      <div class="input-title">
+          Password
+      </div>
+      <form>
+          <input class="input" type="text" #password id="password" name="password">
+      </form>
+  </div>
+</div>
+<br>
+<br>
+<div class="wrapper">
+  <button class="login-button" (click)="login(username.value, password.value)" id="signin">
+      Sign In
+  </button>
+  <br>
+  <br>
+  <h4>Don't have an account? Create one <span style="cursor: pointer; color: blue; padding: 5px" (click)="router.navigate(['/auth/register'])">here</span></h4>
+</div>
