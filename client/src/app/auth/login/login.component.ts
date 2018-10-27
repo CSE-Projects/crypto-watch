@@ -16,9 +16,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(username: string, password: string) {
-    this.authService.login(username, password)
-    .pipe( tap(() => {console.log("login_success");this.router.navigate(['/dashboard']);}) )
-    .subscribe();
+    this.authService.login(username, password);
   }
 
 }

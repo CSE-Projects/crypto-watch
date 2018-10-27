@@ -12,7 +12,7 @@ router.post('/', function (req, res) {
     var db = req.connection;
 
     // check if group_name exists
-    db.query('SELECT * from User_group where group_name = ?', req.body.group_name, function (rows) {
+    db.query('SELECT * from User_Group where group_name = ?', req.body.group_name, function (rows) {
         if (rows.length !== 0) {
             res.send('Error: Group Name exists');
         }
@@ -31,12 +31,12 @@ router.post('/', function (req, res) {
 
                 // create a group entry in the table
                 // with value of group_name and admin_name
-                // values to insert into user_group table
+                // values to insert into User_Group table
                 var values = {
                     group_name: req.body.group_name,
                     admin_username: req.user.userID
                 };
-                db.query('Insert into User_group Set ?', values, function (rows) {
+                db.query('Insert into User_Group Set ?', values, function (rows) {
                     // form tuples to be inserted into the table part_of
                     var values = [];
                     values.push([req.body.group_name, req.user.userID]);
@@ -78,7 +78,7 @@ router.get('/', function (req, res) {
     db.query('Select g.group_name, g.admin_username ' +
             'from (Select * from Part_of where username = ?) as p ' +
                 'INNER JOIN ' +
-                'User_group as g ' +
+                'User_Group as g ' +
                 'on p.group_name = g.group_name', username, function (rows) {
         res.send(rows);
     }, function (err) {
