@@ -1,6 +1,6 @@
-<div id="group-container">
+<div id="group-container" *ngIf="!resolved">
   <!-- Display transaction in a group -->
-  <div id="group-transactions">
+  <div class="group-transactions">
     <div style="margin: 20px; padding: 10px">
       <span class="username-pills" *ngFor="let user of users | async">{{user.username}}</span>
     </div>
@@ -36,5 +36,24 @@
         Resolve
       </button>
     </span>
+  </div>
+</div>
+
+
+<div *ngIf="resolved">
+  <div class="group-transactions">
+    <div *ngFor="let txn of resolvedTransactions" class="group-transaction-item">
+      <span class="group-txn-item">
+        {{txn.from}}
+      </span>
+      =>
+      <span class="group-txn-item">
+        {{txn.to}}
+      </span>
+      =
+      <span class="group-txn-item">
+        {{txn.value}}
+      </span>
+    </div>
   </div>
 </div>

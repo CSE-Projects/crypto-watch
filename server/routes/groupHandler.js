@@ -217,7 +217,7 @@ router.get('/transactions/resolve/:group_name', function(req, res) {
                 // }, function (err) {
                 //     res.send('DB Error: ' + err);
                 // });
-                res.send('ds');
+                res.send(result);
             }, function (err) {
                 res.send('DB Error: ' + err);
             });

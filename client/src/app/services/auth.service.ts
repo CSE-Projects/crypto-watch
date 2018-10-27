@@ -15,7 +15,7 @@ const httpOptions = {
 
 @Injectable()
 export class AuthService {
-  username = "";
+  // username = "";
   baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -31,7 +31,8 @@ export class AuthService {
           }
           result = result === undefined ? "" : result;
           localStorage.setItem('access_token', "" + result);
-          this.username = username;
+          localStorage.setItem('username', username);
+          // this.username = localStorage.getItem('username');
           this.router.navigate(['/dashboard']);
         })
       )
@@ -41,7 +42,7 @@ export class AuthService {
   // logout
   logout() {
     localStorage.removeItem('access_token');
-    this.username = null;
+    localStorage.removeItem('username');
   }
 
   // get expiration date for a token string
