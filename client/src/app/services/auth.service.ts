@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as jwtDecode from 'jwt-decode';
 import { environment } from '../../environments/environment';
+
+// sending json
+// receiving a text response (https://github.com/angular/angular/issues/18586)
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  responseType: 'text' as 'text'
+};
 
 @Injectable()
 export class AuthService {
@@ -14,9 +21,10 @@ export class AuthService {
 
   // login using username password
   login(username: string, password: string): Observable<boolean> {
-    return this.http.post<{token: string}>(this.baseUrl + '/auth/login', {username: username, password: password})
+    return this.http.post<{token: string}>(this.baseUrl + '/auth/login', {username: username, password: password}, httpOptions)
       .pipe(
         map(result => {
+          console.log(result)
           localStorage.setItem('access_token', result.token);
           this.username = username;
           return true;
