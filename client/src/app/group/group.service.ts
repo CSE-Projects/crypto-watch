@@ -34,8 +34,6 @@ export class GroupService {
 
   // add a new transaction in this group
   newGroupTransaction(value) {
-    return this.http.post(this.baseUrl + '/group/transactions', value, httpOptions)
-      .pipe( tap(() => {window.location.reload();}))
-      .subscribe();
+    return this.http.post(this.baseUrl + '/group/transactions', value, httpOptions).subscribe();
   }
 }

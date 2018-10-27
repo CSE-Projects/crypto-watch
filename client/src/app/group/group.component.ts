@@ -56,6 +56,8 @@ export class GroupComponent implements OnInit {
         time: time
       };
       this.groupService.newGroupTransaction(data);
+      this.groupTransactions = this.groupService.getGroupTransactions(this.group_name);
+
     }
   }
 }
