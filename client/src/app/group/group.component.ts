@@ -16,6 +16,7 @@ export class GroupComponent implements OnInit {
   isAdmin = true;
   group_name;
   groupTransactions;
+  users;
 
   constructor(
     private authService: AuthService,
@@ -31,6 +32,7 @@ export class GroupComponent implements OnInit {
     this.group_name = this.route.snapshot.paramMap.get('group_name');
     console.log(this.group_name);
 
+    this.users = this.groupService.getUsers(this.group_name);
     this.groupTransactions = this.groupService.getGroupTransactions(this.group_name);
     // this.groupTransactions = [{from: "new", to: "omkar", value: "1233"}, {from: "new", to: "omkar", value: "1243"}]
   }

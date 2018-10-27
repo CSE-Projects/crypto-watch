@@ -86,6 +86,32 @@ router.get('/', function (req, res) {
     });
 });
 
+/**
+ * route: /group/:group_name
+ * type: GET
+ * req: group_name as param
+ * response: all users in the group
+ */
+router.get('/:group_name', function (req, res) {
+    // get db connection
+    var db = req.connection;
+    var username = req.user.userID;
+    // check if the user is part of the group
+    db.query('Select * from Part_of where username = ?', username, function (rows) {
+        if (rows.length === 0) {
+            res.send('Error: User is not part of the group');
+        }
+        // get usernames for the users in the group
+        db.query('Select username from Part_of where group_name = ?', req.params.group_name, function (rows) {
+            res.send(rows)
+        }, function (err) {
+            res.send('DB Error: ' + err);
+        });
+    }, function (err) {
+        res.send('DB Error: ' + err);
+    });
+});
+
 
 /**
  * route: /group/transactions/:group_name

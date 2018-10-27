@@ -17,6 +17,14 @@
   /*box-shadow: 0 1px 3px rgba(10, 10, 10, 0.2);*/
 }
 
+.username-pills {
+  padding: 10px;
+  margin: 4px;
+  background-color: #B3E5FC;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
 .group-transaction-item {
   background-color: white;
   padding: 10px;

@@ -23,6 +23,11 @@ export class GroupService {
   constructor(private http: HttpClient, private router: Router) { }
 
   // get the transaction for this group
+  getUsers(group_name) {
+    return this.http.get(this.baseUrl + '/group/' + group_name);
+  }
+
+  // get the transaction for this group
   getGroupTransactions(group_name) {
     return this.http.get<GroupTransaction[]>(this.baseUrl + '/group/transactions/' + group_name);
   }
