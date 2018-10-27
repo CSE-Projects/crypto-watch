@@ -20,12 +20,11 @@
   <div id="add-transaction">
     <span>
       <input class="group-input" type="text" #from id="from" name="from" placeholder="from">
-      <!--<b>==></b>-->
       <input class="group-input" type="text" #to id="to" name="to" placeholder="to">
-      <!--<b>==</b>-->
       <input class="group-input" type="text" #amount id="amount" name="amount" placeholder="amount">
+      <input class="group-input" type="text" #date id="" name="date" placeholder="YYYY-MM-DD">
 
-      <button class="group-button">
+      <button (click)="addGroupTransaction(to.value, from.value, amount.value, date.value)" class="group-button">
         Add
       </button>
     </span>

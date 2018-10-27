@@ -16,7 +16,7 @@
   </div>
   <!-- list of groups -->
   <div  *ngFor="let g of groups | async; let i = index">
-    <div class="group-row" (click)="routeGroup(g.group_name)">
+    <div class="group-row" (click)="routeGroup(g.group_name, g.admin_username)">
       <div class="row-field" >
         {{i+1 + "."}}
       </div>
