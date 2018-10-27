@@ -131,7 +131,7 @@ router.get('/transactions/:group_name', function(req, res) {
         }
         else {
             // get transaction details for that group name
-            db.query('Select * from Group_Transactions where group_name = ?', group_name, function (rows) {
+            db.query('Select * from Group_Transactions where group_name = ? and resolved = 0', group_name, function (rows) {
                 res.send(rows);
             }, function (err) {
                 res.send('DB Error: ' + err);
@@ -187,6 +187,126 @@ router.post('/transactions', function (req, res) {
         res.send('DB Error: ' + err);
     });
 });
+
+
+
+/**
+ * route: /group/transactions/resolve/:group_name
+ * type: GET
+ * req: group_name in param, admin as a user
+ * res: all transaction done in a group
+ */
+router.get('/transactions/resolve/:group_name', function(req, res) {
+    // get db connection
+    var db = req.connection;
+    var username = req.user.userID;
+    var group_name = req.params.group_name;
+    // check user is the admin for the group
+    db.query('Select * from User_Group where admin_username = ? and group_name = ?', [username, group_name], function (rows) {
+        if (rows.length === 0) {
+            res.send('Error: User is not the Group Admin');
+        }
+        else {
+            // get all transaction with resolve id 0
+            db.query('Select * from Group_Transactions where group_name = ? and resolved = 0', group_name, function (rows) {
+                var result = resolveTransactions(rows);
+                // console.log(rows);
+                console.log(result);
+                // db.query('Update Group_Transactions set resolved = 1' , null, function (rows) {
+                //     res.send(result);
+                // }, function (err) {
+                //     res.send('DB Error: ' + err);
+                // });
+                res.send(result);
+            }, function (err) {
+                res.send('DB Error: ' + err);
+            });
+        }
+    }, function (err) {
+        res.send('DB Error: ' + err);
+    });
+});
+
+// core login to resolve transaction
+function resolveTransactions(transaction) {
+    // result
+    var result = [];
+
+
+    // create list of users present in the transaction
+    var users = [];
+    for (var i = 0; i < transaction.length; i++) {
+        console.log(transaction[i].payment_from);
+        var exists = 0;
+        for (var j = 0; j < users.length; j++) {
+            if (users[j] == transaction[i].payment_from) {
+                exists = 1;
+                break;
+            }
+        }
+        if (exists == 0) {
+            users.push(transaction[i].payment_from);
+        }
+        exists = 0;
+        for (j = 0; j < users.length; j++) {
+            if (users[j] == transaction[i].payment_to) {
+                exists = 1;
+                break;
+            }
+        }
+        if (exists == 0) {
+            users.push(transaction[i].payment_to);
+        }
+    }
+    console.log(users);
+    // value array for each user
+    var values = [];
+    for (i = 0; i < users.length; i++) {
+        values.push(0);
+    }
+
+    // for each transaction
+    for (i = 0; i < transaction.length; i++) {
+        // from
+        values[users.indexOf(transaction[i].payment_from)] -= transaction[i].value;
+        // tp
+        values[users.indexOf(transaction[i].payment_to)] += transaction[i].value;
+    }
+    console.log(values);
+
+    for (i = 0; i < values.length; i++) {
+        if (values[i] <= 0) continue;
+
+        for (j = 0; j < values.length; j++) {
+            if (values[j] < 0) {
+                var payment = -1 * values[j];
+                if (payment >= values[i]) {
+                    transaction = {
+                        from: users[i],
+                        to: users[j],
+                        value: values[i]
+                    };
+                    values[j] += values[i];
+                    values[i] = 0;
+                    result.push(transaction);
+                    break;
+                }
+                else {
+                    transaction = {
+                        from: users[i],
+                        to: users[j],
+                        value: payment
+                    };
+                    values[i] -= payment;
+                    values[j] = 0;
+                    result.push(transaction);
+                }
+            }
+        }
+    }
+
+    return result;
+}
 
 
 module.exports = router;

@@ -63,6 +63,7 @@ exports.connectDB = function (callback, fallback) {
                     + 'payment_from VARCHAR(10),'
                     + 'value BIGINT(20) NOT NULL,'
                     + 'time DATE NOT NULL,'
+                    + 'resolved INT(1) DEFAULT 0,'
                     + 'CONSTRAINT fk_group_transact FOREIGN KEY (group_name) REFERENCES User_Group(group_name),'
                     + 'CONSTRAINT fk_to_group FOREIGN KEY (payment_to) REFERENCES User(username),'
                     + 'CONSTRAINT fk_from_group FOREIGN KEY (payment_from) REFERENCES User(username)'

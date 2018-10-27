@@ -8,7 +8,11 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private auth: AuthService, private router: Router) { }
+  username;
+
+  constructor(private auth: AuthService, private router: Router) {
+    this.username = localStorage.getItem('username');
+  }
 
   logout() {
     this.auth.logout();

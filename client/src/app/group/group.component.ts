@@ -17,17 +17,21 @@ export class GroupComponent implements OnInit {
   group_name;
   groupTransactions;
   users;
+  resolvedTransactions;
+  resolved = false;
 
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
     private groupService: GroupService,
     private groupAdminData: GroupAdminDataService
-  ) {}
+  ) {
+    this.resolved = false;
+  }
 
   ngOnInit() {
     // check if
-    this.isAdmin = this.groupAdminData.admin_username === this.authService.username;
+    this.isAdmin = this.groupAdminData.admin_username === localStorage.getItem('username');
     // get group name
     this.group_name = this.route.snapshot.paramMap.get('group_name');
     console.log(this.group_name);
@@ -56,6 +60,17 @@ export class GroupComponent implements OnInit {
         time: time
       };
       this.groupService.newGroupTransaction(data);
+      this.groupTransactions = this.groupService.getGroupTransactions(this.group_name);
+
     }
+  }
+
+  resolveTransactions() {
+    this.groupService.resolveTransactions(this.group_name).subscribe(
+      (data) => {
+        this.resolved = true;
+        this.resolvedTransactions = data;
+      }
+    );
   }
 }

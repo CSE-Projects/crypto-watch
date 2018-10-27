@@ -7,7 +7,7 @@
 }
 
 /*================ transactions in a section ====================*/
-#group-transactions {
+.group-transactions {
   height: 78%;
   background-color: #f2f2f3;
   overflow: auto;
