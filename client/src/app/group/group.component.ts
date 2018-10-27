@@ -60,4 +60,8 @@ export class GroupComponent implements OnInit {
 
     }
   }
+
+  resolveTransactions() {
+    console.log(this.groupService.resolveTransactions(this.group_name));
+  }
 }

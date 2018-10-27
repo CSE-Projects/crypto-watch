@@ -32,7 +32,7 @@
       </button>
     </span>
     <span>
-      <button *ngIf="isAdmin" class="group-button" style="background-color: #4CAF50; font-size: 18px; margin-top: 6px">
+      <button (click)="resolveTransactions()" *ngIf="isAdmin" class="group-button" style="background-color: #4CAF50; font-size: 18px; margin-top: 6px">
         Resolve
       </button>
     </span>

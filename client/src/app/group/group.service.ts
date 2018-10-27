@@ -36,4 +36,9 @@ export class GroupService {
   newGroupTransaction(value) {
     return this.http.post(this.baseUrl + '/group/transactions', value, httpOptions).subscribe();
   }
+
+  resolveTransactions(group_name) {
+    return this.http.get<GroupTransaction[]>(this.baseUrl + '/group/transactions/resolve/' + group_name);
+  }
+
 }
