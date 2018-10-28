@@ -16,7 +16,7 @@ router.get('/', function (req, res) {
             'from Group_Transactions ' +
             'where payment_to = ? or ' +
             'payment_from = ? and ' +
-            'resolved = 0' , [username, username], function (rows) {
+            'resolved = 0 order by time ' , [username, username], function (rows) {
         res.send(rows);
     }, function (err) {
         res.send('DB Error: ' + err);
