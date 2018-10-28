@@ -1,7 +1,6 @@
 export class Analytics {
-    to: string;
-    from: string;
-    transaction: number;
-    date: Date;
+    payment_to: string;
+    payment_from: string;
+    value: number;
+    time: string;
 }
-  
