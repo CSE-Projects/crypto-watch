@@ -15,6 +15,7 @@ var authRouter = require('./routes/authHandler');
 var userRouter = require('./routes/userHandler');
 var walletRouter = require('./routes/walletHandler');
 var groupRouter = require('./routes/groupHandler');
+var analyticsRouter = require('./routes/analyticsHandler');
 
 var app = express();
 
@@ -56,7 +57,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/api/wallet', walletRouter);
 app.use('/api/group', groupRouter);
-
+app.use('/api/analytics', analyticsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
