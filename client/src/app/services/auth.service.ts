@@ -27,6 +27,8 @@ export class AuthService {
         tap(result => {
           // console.log(result);
           if (result.includes("Error")) {
+            // console.log("wrong password");
+            
             return;
           }
           result = result === undefined ? "" : result;
