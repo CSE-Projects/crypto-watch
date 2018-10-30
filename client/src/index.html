@@ -14,5 +14,17 @@
 </head>
 <body>
   <app-root></app-root>
+  <div id="toast"><div id="img">Icon</div><div id="desc"></div></div>
+
+  <script>
+    function launch_toast(msg) {
+      var x = document.getElementById("toast");
+      var y = document.getElementById("desc");
+      x.className = "show";
+      x.innerText = msg;
+      setTimeout(function(){ x.className = x.className.replace("show", ""); y.innerText = "";}, 5000);
+    }
+  </script>
+
 </body>
 </html>

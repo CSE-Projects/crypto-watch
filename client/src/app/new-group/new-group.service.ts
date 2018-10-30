@@ -28,7 +28,13 @@ export class NewGroupService {
       username_list: username_list
     };
     return this.http.post(this.baseUrl + '/group', value, httpOptions)
-      .pipe( tap(() => {console.log("re");this.router.navigate(['/dashboard']);}))
+      .pipe( tap((result) => {
+        if (result.includes("Error")) {
+          (window as any).launch_toast(result);
+          return;
+        }
+        console.log("re");
+        this.router.navigate(['/dashboard']);}))
       .subscribe();
   }
 

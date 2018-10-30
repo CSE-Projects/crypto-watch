@@ -28,7 +28,7 @@ export class AuthService {
           // console.log(result);
           if (result.includes("Error")) {
             // console.log("wrong password");
-            
+            (window as any).launch_toast(result);
             return;
           }
           result = result === undefined ? "" : result;

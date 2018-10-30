@@ -29,9 +29,14 @@ export class RegisterService {
       email_id: email_id,
       bitcoin: bitcoin,
       ether: ether
-    }
+    };
     return this.http.post(this.baseUrl + '/auth', values, httpOptions)
-      .pipe( tap(() => {this.router.navigate(['/auth']);}))
+      .pipe( tap((result) => {
+        if (result.includes("Error")) {
+          (window as any).launch_toast(result);
+          return;
+        }
+        this.router.navigate(['/auth']);}))
       .subscribe();
   }
 }
