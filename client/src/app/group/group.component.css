@@ -61,7 +61,7 @@
   border-radius: 3px;
   box-sizing: border-box;
   resize: vertical;
-  background-color: rgb(200, 248, 240);
+  background-color: #e0f0f9;
 }
 .group-input[type=text]:focus {
   background-color: white;
@@ -73,7 +73,7 @@
   padding: 12px;
   margin-left: 10px;
   color: white;
-  background-color: #03A9F4;
+  background-color: #3770ff;
   border: none;
   border-radius: 3px;
   text-align: center;

@@ -6,8 +6,16 @@
       <div style="padding-right: 10px; font-size: 20px">
         {{username}}
       </div>
-      <div style="display: flex; align-items: center">
-        <img src="../assets/bitcoin.png" width="40px" height="40px">
+      <!--<div style="display: flex; align-items: center">-->
+        <!--<img src="../assets/bitcoin.png" width="40px" height="40px">-->
+      <!--</div>-->
+      <div (click)="drop = !drop;" style="display: flex; align-items: center; flex-direction: column">
+        <i class="material-icons">
+          arrow_drop_down
+        </i>
+        <div *ngIf="drop" class="dropdown-option">
+          <span (click)="logout()" style="padding: 20px">Logout</span>
+        </div>
       </div>
     </div>
 </div>

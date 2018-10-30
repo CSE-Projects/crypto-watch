@@ -22,6 +22,20 @@
   cursor: pointer;
 }
 
+.dropdown-option {
+  position:absolute;
+  z-index: 1;
+  margin: 30px;
+  padding:10px;
+  background-color: white;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  font-size: 16px;
+  border: 1px solid #00B7FF;
+}
+.dropdown-option:hover {
+  background-color: #3770ff;
+  color: white;
+}
 
 /* ====================================------------ */
 
