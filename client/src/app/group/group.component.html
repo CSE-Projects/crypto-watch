@@ -1,4 +1,23 @@
 <div id="group-container" *ngIf="!resolved">
+  <!-- Add and resolve transaction-->
+  <div id="add-transaction">
+    <span>
+      <input class="group-input" type="text" #from id="from" name="from" placeholder="from">
+      <input class="group-input" type="text" #to id="to" name="to" placeholder="to">
+      <input class="group-input" type="text" #amount id="amount" name="amount" placeholder="amount">
+      <input class="group-input" type="text" #date id="" name="date" placeholder="YYYY-MM-DD">
+
+      <button (click)="addGroupTransaction(to.value, from.value, amount.value, date.value)" class="group-button">
+        Add
+      </button>
+    </span>
+    <span>
+      <button (click)="resolveTransactions()" *ngIf="isAdmin" class="group-button" style="background-color: #4CAF50; font-size: 18px; margin-top: 6px">
+        Resolve
+      </button>
+    </span>
+  </div>
+
   <!-- Display transaction in a group -->
   <div class="group-transactions">
     <div style="margin: 20px; padding: 10px">
@@ -17,25 +36,6 @@
         {{txn.value}}
       </span>
     </div>
-  </div>
-
-  <!-- Add and resolve transaction-->
-  <div id="add-transaction">
-    <span>
-      <input class="group-input" type="text" #from id="from" name="from" placeholder="from">
-      <input class="group-input" type="text" #to id="to" name="to" placeholder="to">
-      <input class="group-input" type="text" #amount id="amount" name="amount" placeholder="amount">
-      <input class="group-input" type="text" #date id="" name="date" placeholder="YYYY-MM-DD">
-
-      <button (click)="addGroupTransaction(to.value, from.value, amount.value, date.value)" class="group-button">
-        Add
-      </button>
-    </span>
-    <span>
-      <button (click)="resolveTransactions()" *ngIf="isAdmin" class="group-button" style="background-color: #4CAF50; font-size: 18px; margin-top: 6px">
-        Resolve
-      </button>
-    </span>
   </div>
 </div>
 

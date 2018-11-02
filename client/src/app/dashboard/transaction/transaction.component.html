@@ -1,0 +1,29 @@
+<div id="add-transaction">
+    <span>
+      <input class="txn-input" type="text" #from id="from" name="from" placeholder="from">
+      <input class="txn-input" type="text" #to id="to" name="to" placeholder="to">
+      <input class="txn-input" type="text" #amount id="amount" name="amount" placeholder="amount">
+      <input class="txn-input" type="text" #date id="" name="date" placeholder="YYYY-MM-DD">
+
+      <button (click)="addTransaction(to.value, from.value, amount.value, date.value)" class="txn-button">
+        Add
+      </button>
+    </span>
+</div>
+
+<!-- Display transactions for a user -->
+<div class="transactions">
+  <div *ngFor="let txn of transactions | async" class="transaction-item">
+      <span class="txn-item">
+        {{txn.payment_from}}
+      </span>
+    =>
+    <span class="txn-item">
+        {{txn.payment_to}}
+      </span>
+    =
+    <span class="txn-item">
+        {{txn.value}}
+      </span>
+  </div>
+</div>

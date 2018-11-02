@@ -1,0 +1,68 @@
+#add-transaction {
+  height: 10%;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(10, 10, 10, 0.2);
+  display: flex;
+  background-color: white;
+  border-radius: 3px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* input texts */
+.txn-input[type=text]{
+  width: 20%;
+  font-size: 16px;
+  margin: 6px 5px 16px 5px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  resize: vertical;
+  background-color: #e0f0f9;
+}
+.txn-input[type=text]:focus {
+  background-color: white;
+}
+
+/* buttons */
+.txn-button {
+  font-size: 16px;
+  padding: 12px;
+  margin-left: 10px;
+  color: white;
+  background-color: #3770ff;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
+
+/* ===================== */
+
+.transactions {
+  height: 78%;
+  background-color: #f2f2f3;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /*box-shadow: 0 1px 3px rgba(10, 10, 10, 0.2);*/
+}
+
+.transaction-item {
+  background-color: white;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 3px;
+}
+
+.txn-item {
+  color: #757575;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+}

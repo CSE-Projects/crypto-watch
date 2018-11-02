@@ -1,15 +1,19 @@
 <!-- Sub navbar -->
 <div class="sub-nav">
-  <div class="sub-nav-pills selected" [ngClass] = "{'selected': groupNav}"  (click)="navToggle(0)">
+  <div class="sub-nav-pills selected" [ngClass] = "{'selected': navVar == 1}"  (click)="navToggle(1)">
     <b>Groups</b>
   </div>
-  <div class="sub-nav-pills selected" [ngClass] = "{'selected': !groupNav}" (click)="navToggle(1)">
+  <div class="sub-nav-pills selected" [ngClass] = "{'selected': navVar == 2}" (click)="navToggle(2)">
     <b>Analytics</b>
+  </div>
+  <div class="sub-nav-pills selected" [ngClass] = "{'selected': navVar == 3}" (click)="navToggle(3)">
+    <b>Transact</b>
   </div>
 </div>
 
 <!-- Components -->
 <div id="container">
-  <app-groups *ngIf="groupNav"></app-groups>
-  <app-analytics *ngIf="!groupNav"></app-analytics>
+  <app-groups *ngIf="navVar == 1"></app-groups>
+  <app-analytics *ngIf="navVar == 2"></app-analytics>
+  <app-transaction *ngIf="navVar == 3"></app-transaction>
 </div>

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import {of} from "rxjs/index";
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,12 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // username;
   drop = false;
-  username = localStorage.getItem('username');
+  username;
 
   constructor(private auth: AuthService, private router: Router) {
-    this.username = localStorage.getItem('username');
     this.drop = false;
+    this.username = localStorage.getItem('username');
   }
 
   logout() {
@@ -25,4 +25,5 @@ export class AppComponent {
   routeDashboard() {
     this.router.navigate(['']);
   }
+
 }

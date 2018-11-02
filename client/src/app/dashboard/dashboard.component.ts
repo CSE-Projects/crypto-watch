@@ -7,17 +7,17 @@ import {group} from "@angular/animations";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  groupNav;
+  navVar;
 
   constructor() {
-    this.groupNav = true;
+    this.navVar = 1;
   }
 
   ngOnInit() {
   }
 
   navToggle(i) {
-    this.groupNav = i === 0;
+    this.navVar = i;
 
   }
 
