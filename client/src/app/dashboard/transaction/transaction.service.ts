@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Router} from "@angular/router";
 import {tap} from "rxjs/operators";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
@@ -12,7 +11,6 @@ const httpOptions = {
   responseType: 'text' as 'text'
 };
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +21,7 @@ export class TransactionService {
 
   // get the transaction
   getTransactions() {
-    return this.http.get<Transaction[]>(this.baseUrl + '/user/transactions');
+    return this.http.get<Transaction[]>(this.baseUrl + '/user/transactions/all');
   }
 
   // add a new transaction for the user
@@ -33,8 +31,7 @@ export class TransactionService {
         if (result.includes("Error")) {
           (window as any).launch_toast(result);
           return;
-        }}))
-      .subscribe();
+        }}));
   }
 
 }

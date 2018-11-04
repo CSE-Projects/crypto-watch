@@ -70,6 +70,17 @@ exports.connectDB = function (callback, fallback) {
                     +  ')', function (err) {
                     if (err) return fallback(err);
                 });
+                // Group transaction table
+                connection.query('CREATE TABLE IF NOT EXISTS Transactions ('
+                    + 'payment_to VARCHAR(10),'
+                    + 'payment_from VARCHAR(10),'
+                    + 'value BIGINT(20) NOT NULL,'
+                    + 'time DATE NOT NULL,'
+                    + 'CONSTRAINT fk_to_user FOREIGN KEY (payment_to) REFERENCES User(username),'
+                    + 'CONSTRAINT fk_from_user FOREIGN KEY (payment_from) REFERENCES User(username)'
+                    +  ')', function (err) {
+                    if (err) return fallback(err);
+                });
             });
 
         });

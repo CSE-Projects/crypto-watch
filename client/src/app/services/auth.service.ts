@@ -38,7 +38,6 @@ export class AuthService {
           this.router.navigate(['/dashboard']);
         })
       )
-      .subscribe();
   }
 
   // logout

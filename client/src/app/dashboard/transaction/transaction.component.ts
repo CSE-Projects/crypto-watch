@@ -32,8 +32,9 @@ export class TransactionComponent implements OnInit {
         value: value,
         time: time
       };
-      this.transactions.newTransaction(data);
-      this.transactions = this.transactions.getTransactions();
+      this.transactionService.newTransaction(data).subscribe(() => {
+        this.transactions = this.transactionService.getTransactions();
+      });
     }
   }
 }
