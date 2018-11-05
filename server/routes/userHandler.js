@@ -30,7 +30,7 @@ router.get('/transactions/all', function (req, res) {
     var db = req.connection;
     var username = req.user.userID;
     // Transactions
-    db.query('select * from transactions where payment_to = ? or payment_from = ?', [username, username], function (rows) {
+    db.query('select * from Transactions where payment_to = ? or payment_from = ?', [username, username], function (rows) {
         console.log(rows.length);
         res.send(rows)
     }, function (err) {
