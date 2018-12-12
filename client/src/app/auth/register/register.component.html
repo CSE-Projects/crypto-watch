@@ -11,7 +11,7 @@
       </div>
       <form>
         <input class="input" type="text" #username id="username" name="username">
-      </form>    
+      </form>
   </div>
   <div class="field">
       <div class="input-title">
@@ -42,7 +42,7 @@
         E-Mail ID
     </div>
     <form>
-        <input class="input" type="text" #email id="email" name="email">
+        <input class="input" type="email" #email id="email" name="email">
     </form>
   </div>
   <div class="field">
@@ -65,8 +65,8 @@
 <br>
 <br>
 <div class="wrapper">
-  <button class="register-button" 
-    (click)="registerDetails(username.value, password.value, firstname.value, lastname.value, email.value, bitcoin.value, ether.value)" 
+  <button class="register-button"
+    (click)="registerDetails(username.value, password.value, firstname.value, lastname.value, email.value, bitcoin.value, ether.value)"
     id="register">
       Sign In
   </button>

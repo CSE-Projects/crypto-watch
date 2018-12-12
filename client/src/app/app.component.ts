@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
-import {of} from "rxjs/index";
+import {Observable, of} from "rxjs/index";
 
 @Component({
   selector: 'app-root',
@@ -15,10 +15,14 @@ export class AppComponent {
   constructor(private auth: AuthService, private router: Router) {
     this.drop = false;
     this.username = localStorage.getItem('username');
+    console.log(this.router.url);
   }
 
   logout() {
     this.auth.logout();
+    // clear
+    this.drop = false;
+    this.username = "";
     this.router.navigate(['auth']);
   }
 

@@ -36,6 +36,7 @@ export class AuthService {
           localStorage.setItem('username', username);
           // this.username = localStorage.getItem('username');
           this.router.navigate(['/dashboard']);
+
         })
       )
   }
@@ -74,5 +75,13 @@ export class AuthService {
     }
     this.logout();
     return false;
+  }
+
+  // fix to make dashboard username not display previous stored value in username variable
+  getUsername() {
+    if (this.loggedIn()) {
+      return localStorage.getItem('username');
+    }
+    return '';
   }
 }
