@@ -1,3 +1,9 @@
+/* TODO: make responsive */
+#transaction {
+  padding: 10px 300px 0 300px;
+  margin: 5px 0 10px 0;
+}
+
 #add-transaction {
   height: 10%;
   padding: 20px;
@@ -43,26 +49,35 @@
 
 /* ===================== */
 
-.transactions {
-  height: 78%;
-  background-color: #f2f2f3;
-  overflow: auto;
+
+/* Header */
+#txn-header {
   display: flex;
+  flex-direction: row;
+  padding: 20px;
+  margin: 40px 0 15px 0;
+  background-color: #E0E0E0;
   align-items: center;
-  flex-direction: column;
-  /*box-shadow: 0 1px 3px rgba(10, 10, 10, 0.2);*/
+}
+
+.header-field {
+  margin: 10px 60px 10px 60px;
+  color: #757575;
+  font-weight: bold;
 }
 
 .transaction-item {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  margin-bottom: 5px;
   background-color: white;
-  padding: 10px;
-  margin: 5px;
-  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(10, 10, 10, 0.2);
+
 }
 
 .txn-item {
-  color: #757575;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 10px;
+  font-size: 20px;
+  margin: 0 40px 0 40px;
+  padding: 10px 15px 10px 15px;
 }

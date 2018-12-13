@@ -1,4 +1,9 @@
 <div id="group-container" *ngIf="!resolved">
+
+  <div style="display: flex; flex-direction: row; justify-content: center; margin: 10px; padding: 10px">
+    <span class="username-pills" *ngFor="let user of users | async">{{user.username}}</span>
+  </div>
+
   <!-- Add and resolve transaction-->
   <div id="add-transaction">
     <span>
@@ -18,30 +23,40 @@
     </span>
   </div>
 
-  <!-- Display transaction in a group -->
+  <!-- Display transactions in a group -->
   <div class="group-transactions">
-    <div style="margin: 20px; padding: 10px">
-      <span class="username-pills" *ngFor="let user of users | async">{{user.username}}</span>
+    <!-- headers -->
+    <div id="group-txn-header">
+      <div class="header-field">
+        To
+      </div>
+      <div class="header-field">
+        From
+      </div>
+      <div class="header-field">
+        Value
+      </div>
     </div>
+
+    <!-- list of transactions -->
     <div *ngFor="let txn of groupTransactions | async" class="group-transaction-item">
-      <span class="group-txn-item">
+      <div class="group-txn-item" >
         {{txn.payment_from}}
-      </span>
-      =>
-      <span class="group-txn-item">
+      </div>
+      <div class="group-txn-item">
         {{txn.payment_to}}
-      </span>
-      =
-      <span class="group-txn-item">
+      </div>
+      <div class="group-txn-item">
         {{txn.value}}
-      </span>
+      </div>
     </div>
+
   </div>
 </div>
 
 
 <div *ngIf="resolved">
-  <div class="group-transactions">
+  <div class="group-transactions-res">
     <h2>Resolved Transactions are: </h2>
     <div *ngFor="let txn of resolvedTransactions" class="group-transaction-item">
       <span class="group-txn-item">
