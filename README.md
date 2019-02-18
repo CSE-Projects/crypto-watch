@@ -9,6 +9,6 @@ Checkout USAGE.md
 - `client`: contains Angular code to use server API's and provide client interface 
 
 ### Future Work
-[ ] Integration with cryptocurrency payment services
-[ ] Containerize using Docker
-[ ] Orchestrate using Kubernetes
+* [ ] Integration with cryptocurrency payment services
+* [ ] Containerize using Docker
+* [ ] Orchestrate using Kubernetes
