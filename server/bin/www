@@ -15,6 +15,11 @@ var http = require('http');
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+// load environment variables from .env file when non-prod use
+if (!process.env.NODE_ENV || process.env.NODE_ENV !== 'production') {
+    require('dotenv').load();
+}
+
 /**
  * Create HTTP server.
  */

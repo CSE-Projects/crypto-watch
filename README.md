@@ -2,9 +2,9 @@
 Web app for tracking user's expenses, with features like resolving payments of people in a group, analysis of transactions, etc.
 
 ### Usage 
-Checkout USAGE.md
+Checkout (USAGE.md)[blob/master/USAGE.md]
 
-### File Structure
+### Project Structure
 - `server`: contains Express server code with MySQL integration for the API's
 - `client`: contains Angular code to use server API's and provide client interface 
 

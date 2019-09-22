@@ -3,8 +3,10 @@ var mysql = require('mysql');
 // connection parameters
 var connection = mysql.createConnection({
     host: 'localhost',
-    user: 'crypto_watch',
-    password: 'crypto_watch123'
+    // user: 'crypto_watch',
+    // password: 'crypto_watch123'
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD
 });
 
 // connect to database and create default tables if they don't exist

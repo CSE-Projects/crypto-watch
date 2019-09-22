@@ -10,6 +10,7 @@ var secret_file = require('./secret');
 var cors = require('cors');
 // helps secure app by adding various http headers
 const helmet = require('helmet');
+const secret = process.env.JWT_SECRET;
 
 // router
 var authRouter = require('./routes/authHandler');
@@ -32,7 +33,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('../client/dist'));
 // jwt middleware for checking existence od jwt token for paths other than the mentioned ones
-app.use(expressJwt({secret: secret_file.secret}).unless({path: ['/api/auth', '/api/auth/login']}));
+// app.use(expressJwt({secret: secret_file.secret}).unless({path: ['/api/auth', '/api/auth/login']}));
+app.use(expressJwt({secret: secret}).unless({path: ['/api/auth', '/api/auth/login']}));
 app.use(cors());
 app.use(helmet());
 
