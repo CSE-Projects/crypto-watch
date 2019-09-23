@@ -1,9 +1,9 @@
-### Credits: https://github.com/avatsaev/angular4-docker-example
+# Credits: https://github.com/avatsaev/angular4-docker-example
 
 ### STAGE 1: Build ###
 
 # We label our stage as 'builder'
-FROM node:9-alpine as builder
+FROM node:10-alpine as builder
 
 COPY package.json package-lock.json ./
 

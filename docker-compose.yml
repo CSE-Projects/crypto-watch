@@ -1,0 +1,31 @@
+version: "3.3"
+
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: CryptoWatch
+      MYSQL_USER: crypto_watch
+      MYSQL_PASSWORD: crypto_watch123
+  server:
+    build: ./server
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+  client:
+    build: ./client
+    ports:
+      - 8080:80
+    depends_on:
+      - server
+
+volumes:
+  db_data: {}

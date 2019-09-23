@@ -1,9 +1,22 @@
-## Using Docker
+## Using Docker Compose
+
+
+### Run independently using Docker
+
+### Server
+Assuming mysql server is up on port 3306 and access allowed with the username and password
+
+```
+cd server
+docker build -t server .
+docker run -d -p 3000:3000 --network host server
+``` 
 
 ### Client
 Reference: https://github.com/avatsaev/angular4-docker-example
 
 ```
+cd client
 docker build -t client . 
 docker run -d -p 8080:80 client
 ```
@@ -22,7 +35,12 @@ docker run -d -p 8080:80 client
 
 ### Server
 
-Check [README.md](blob/master/server/README.md)
+- Check [README.md](server/README.md) for setting variables
+
+- Assuming mysql server is up on port 3306 and access allowed with the username and password
+    ```
+    npm start
+    ```
 
 ### Client
 
