@@ -1,4 +1,4 @@
-# Crypto Watch (On Going)
+# Crypto Watch
 Web app for tracking user's expenses, with features like resolving payments of people in a group, analysis of transactions, etc.
 
 ### Usage 
